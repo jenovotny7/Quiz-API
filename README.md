@@ -1,4 +1,4 @@
-# Unit 4 Quiz Api
+# Unit 4 Code Quiz Api
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/jenovotny7)
 
 
