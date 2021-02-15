@@ -1,154 +1,182 @@
     
-var questions = [{
-    title: "Inside which HTML element do we put the JavaScript??",
-    choices: ["js ", " script ", "bob", "boolean"],
-    answer: "script"
-},
-{
-    title: "Which built-in method adds one or more elements to the end of an array and returns the new length of the array?",
-    choices: ["last( )", "put( )", "push( )", "pop( )"],
-    answer: "push( )"
-},
-{
-    title: " Which built-in method returns the characters in a string beginning at the specified location?",
-    choices: ["substr( )", "getSubstring( )", "slice( )", "None of the above."],
-    answer: "substr( )"
-},
-{
-    title: "Which of the following function of an array object adds and/or removes elements from an array?",
-    choices: ["toSource( )", "sort( )", "unshift( )", "splice( )"],
-    answer: "splice( )"
-},
-{
-    title: "Which of the following function of String object combines the text of two strings and returns a new string?",
-    choices: ["add( )", "concat( )", " merge( )", "append( )"],
-    answer: "concat( )"
-}
-]
+//global scope variables
+var points = 0;
+var presentQuestion = -1;
+var shotClock= 30;
+var tikTok;
 
-//setting the numerical variables for the functions.. scores and timers.. 
-var score = 0;
-var currentQuestion = -1;
-var timeLeft = 0;
-var timer;
 
-//starts the countdown timer once user clicks the 'start' button
-function start() {
 
-timeLeft = 60;
-document.getElementById("timeLeft").innerHTML = timeLeft;
-
-timer = setInterval(function() {
-    timeLeft--;
-    document.getElementById("timeLeft").innerHTML = timeLeft;
-    //proceed to end the game function when timer is below 0 at any time
-    if (timeLeft <= 0) {
-        clearInterval(timer);
-        endGame(); 
+//Begins the countdown function
+function begin() {
+shotCLock = 30;
+document.getElementById("timeClock").innerHTML = shotClock;
+tikTok = setInterval(function() {
+    shotClock--;
+    document.getElementById("timeClock").innerHTML = shotClock;
+      if (shotClock <= 0) {
+        clearInterval(tikTok);
+        finish(); 
     }
 }, 1000);
 
-next();
+nextQuestion();
 }
 
-//stop the timer to end the game 
-function endGame() {
-clearInterval(timer);
 
-var quizContent = `
-<h2>Game over!</h2>
-<h3>You got a ` + score +  ` /100!</h3>
-<h3>That means you got ` + score / 20 +  ` questions correct!</h3>
+
+
+
+
+//End the game function
+function finish() {
+clearInterval(tikTok);
+
+var quizFeedback = `
+<h2>Quiz Completed!</h2>
+<h3>You score is ` + points +  ` /60!</h3>
+<h3>You got ` + points / 20 +  ` right!</h3>
 <input type="text" id="name" placeholder="Initials"> 
 <button onclick="setScore()">Set score!</button>`;
 
-document.getElementById("quizBody").innerHTML = quizContent;
+document.getElementById("quizMain").innerHTML = quizFeedback;
 }
 
-//store the scores on local storage
+
+
+
+
+
+//Local Storage function 
 function setScore() {
-localStorage.setItem("highscore", score);
+localStorage.setItem("highscore", points);
 localStorage.setItem("highscoreName",  document.getElementById('name').value);
 getScore();
 }
 
 
+
+
+// Score Display Function
 function getScore() {
-var quizContent = `
+var quizFeedback = `
 <h2>` + localStorage.getItem("highscoreName") + `'s highscore is:</h2>
 <h1>` + localStorage.getItem("highscore") + `</h1><br> 
 
-<button onclick="clearScore()">Clear score!</button><button onclick="resetGame()">Play Again!</button>
+<button onclick="clearScore()">Clear score!</button><button onclick="restartGame()">Play Again!</button>
 
 `;
 
-document.getElementById("quizBody").innerHTML = quizContent;
+document.getElementById("quizMain").innerHTML = quizFeedback;
 }
 
-//clears the score name and value in the local storage if the user selects 'clear score'
+
+
+
+
+
+//Clear score function
 function clearScore() {
 localStorage.setItem("highscore", "");
 localStorage.setItem("highscoreName",  "");
 
-resetGame();
+restartGame();
 }
 
-//reset the game 
-function resetGame() {
-clearInterval(timer);
-score = 0;
-currentQuestion = -1;
-timeLeft = 0;
-timer = null;
 
-document.getElementById("timeLeft").innerHTML = timeLeft;
 
-var quizContent = `
+
+
+//restarts the game 
+function restartGame() {
+clearInterval(tikTok);
+points = 0;
+presentQuestion = -1;
+shotClock = 30;
+tikTok = null;
+
+document.getElementById("timeClock").innerHTML = shotClock;
+
+var quizRestart = `
 <h1>
-    JavaScript Quiz!
+    JS Quiz!
 </h1>
 <h3>
-    Let's play!   
+    Play Again!   
 </h3>
-<button onclick="start()">Start!</button>`;
+<button onclick="begin()">Start!</button>`;
 
-document.getElementById("quizBody").innerHTML = quizContent;
+document.getElementById("quizMain").innerHTML = quizRestart;
 }
 
-//deduct 15seconds from the timer if user chooses an incorrect answer
-function incorrect() {
-timeLeft -= 15; 
-next();
-}
 
-//increases the score by 20points if the user chooses the correct answer
+
+
+
+
+//Incorrect answer function
+function wrongAnswer() {
+    nextQuestion();
+    }
+    
+
+//Keeps track of point total
 function correct() {
-score += 20;
-next();
-}
+    points += 20;
+    nextQuestion();
+    }
+    
 
-//loops through the questions 
-function next() {
-currentQuestion++;
 
-if (currentQuestion > questions.length - 1) {
-    endGame();
+//Question Loop
+function nextQuestion() {
+presentQuestion++;
+
+if (presentQuestion > preguntas.length - 1) {
+    finish();
     return;
 }
 
-var quizContent = "<h2>" + questions[currentQuestion].title + "</h2>"
+var quizContent = "<h3>" + preguntas[presentQuestion].title + "</h3>"
 
-for (var buttonLoop = 0; buttonLoop < questions[currentQuestion].choices.length; buttonLoop++) {
+for (var buttonLoop = 0; buttonLoop < preguntas[presentQuestion].choices.length; buttonLoop++) {
     var buttonCode = "<button onclick=\"[ANS]\">[CHOICE]</button>"; 
-    buttonCode = buttonCode.replace("[CHOICE]", questions[currentQuestion].choices[buttonLoop]);
-    if (questions[currentQuestion].choices[buttonLoop] == questions[currentQuestion].answer) {
+    buttonCode = buttonCode.replace("[CHOICE]", preguntas[presentQuestion].choices[buttonLoop]);
+    if (preguntas[presentQuestion].choices[buttonLoop] == preguntas[presentQuestion].answer) {
         buttonCode = buttonCode.replace("[ANS]", "correct()");
     } else {
-        buttonCode = buttonCode.replace("[ANS]", "incorrect()");
+        buttonCode = buttonCode.replace("[ANS]", "wrongAnswer()");
     }
     quizContent += buttonCode
 }
 
-
-document.getElementById("quizBody").innerHTML = quizContent;
+document.getElementById("quizMain").innerHTML = quizContent;
 }
+
+
+
+
+
+
+
+
+
+//Question prompt  
+
+var preguntas= [{
+    title: "What is considered to be the most popular programming language in the world?",
+    choices: ["js", "html", "spanish", "swift"],
+    answer: "js"
+},
+{
+    title: "In JavaScript, what element is used to store and manipulate text, usually in multiples??",
+    choices: ["recorders", "variables", "arrays", "strings"],
+    answer: "arrays"
+},
+
+{
+    title: "What is the element so named because it is used to exchange data with a server, in order to update parts of a web page?",
+    choices: ["ajax", "html", "css", "elon musk"],
+    answer: "ajax"
+}
+]
