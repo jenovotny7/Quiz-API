@@ -2,32 +2,26 @@
 
 <html>
 	<head>
-		<title>Code Quiz</title>
+		<title>Quiz API Challenge</title>
 		<meta charset="UTF-8">
 		<link href="quiz.css" rel="stylesheet" type="text/css">
         <script src = "quiz.js" type="text/javascript"></script>
 	</head>
 	<body>
 		<div id="nav">
-			<!-- view scores link on the top left of nav bar-->
-			<div class="left">
-                <a onclick="getScore()" href="#"><h4 >Your Highscore</h4></a>
-			</div>
-			<!-- countdown timer on the top right of nav bar-->
+			<!-- countdown timer top right-->
 			<div class="right">
-				<h4>Time: <span id="timeLeft">0</span></h4>
+				<h4>Clock: <span id="timeClock">30</span></h4>
 			</div>
 		</div>
-		<!--main body of quiz-->
-		<div id="quiz">
-            <div id="quizBody">      
-                <h1>   
-                    JavaScript Quiz!
-                </h1>
-                <h3>
-					Click to play!   
-                </h3>
-                <button onclick="start()">Start!</button>
+		<!--main -->
+		<div id="q">
+            <div id="quizMain">      
+                <h2>   
+                    Welcome to my JS Quiz!
+                </h2>
+                
+                <button onclick="begin()">Start!</button>
             </div>
         </div>
 	</body>
