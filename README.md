@@ -1,17 +1,53 @@
-# Quiz-API
-
-GIVEN I am taking a code quiz
-WHEN I click the start button
-THEN a timer starts and I am presented with a question
-WHEN I answer a question
-THEN I am presented with another question
-WHEN I answer a question incorrectly
-THEN time is subtracted from the clock
-WHEN all questions are answered or the timer reaches 0
-THEN the game is over
-WHEN the game is over
-THEN I can save my initials and score
+# Unit 4 Quiz Api
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/jenovotny7)
 
 
+## Description
+​
+The purpose of this project is to complete a quiz application through the use of Javascript.
+
+​
+## Table of Contents
+* [Installation](#installation) 
+ 
+* [License](#license) 
+ 
+* [Contributing](#contributing) 
+ 
+* [Tests](#tests) 
+ 
+* [Questions](#questions) 
+
+​
+
+## Installation
+​
+To install necessary dependencies, run the following command:
+​
+git clone <repo>, then run 'npm install' in the CLI.
+  
+​
+
+## License
+​
+This project is licensed under the MIT license.
+
+ ​
+  
+## Contributing
+​
+https://github.com/jenovotny7
+
+​
+
+
+## Questions
+​
+<img src="https://avatars3.githubusercontent.com/u/66326058?v=4" alt="avatar" style="border-radius: 16px" width="30" />
+​
+If you have any questions about the repo, open an issue or contact [jenovotny7](https://github.com/jenovotny7) directly.
+
+
+## Project Link
 
 https://jenovotny7.github.io/Quiz-API/
