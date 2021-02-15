@@ -1,9 +1,7 @@
-<<<<<<< HEAD
- //global scope variables
-=======
+
     
 //global scope variables
->>>>>>> bb1bc6fe47d7d6e92bb3a4c9e933da8dffc1de19
+
 var points = 0;
 var presentQuestion = -1;
 var shotClock= 30;
@@ -183,8 +181,4 @@ var preguntas= [{
     choices: ["ajax", "html", "css", "elon musk"],
     answer: "ajax"
 }
-<<<<<<< HEAD
-]
-=======
-]
->>>>>>> bb1bc6fe47d7d6e92bb3a4c9e933da8dffc1de19
+
