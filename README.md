@@ -14,9 +14,11 @@ The purpose of this project is to complete a quiz application through the use of
  
 * [Contributing](#contributing) 
  
-* [Tests](#tests) 
  
 * [Questions](#questions) 
+
+
+* [Link](#link) 
 
 ​
 
@@ -48,6 +50,5 @@ https://github.com/jenovotny7
 If you have any questions about the repo, open an issue or contact [jenovotny7](https://github.com/jenovotny7) directly.
 
 
-## Project Link
-
+## Link
 https://jenovotny7.github.io/Quiz-API/
